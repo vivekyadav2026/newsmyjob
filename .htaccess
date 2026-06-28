@@ -1,0 +1,46 @@
+RewriteEngine On
+
+# Redirect to HTTPS (uncomment in production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect sensitive directories
+RewriteRule ^(config|includes|models|controllers|functions|database)/ - [F,L]
+
+# Allow direct access to assets and uploads
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+RewriteCond %{REQUEST_URI} ^/(assets|uploads)/ [OR]
+RewriteCond %{REQUEST_URI} ^/admin/ [OR]
+RewriteCond %{REQUEST_URI} ^/ajax/ [OR]
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^ - [L]
+
+# Route everything else to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L,QSA]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Protect .sql files
+<FilesMatch "\.(sql|env|log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# PHP settings
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 12M
+    php_value max_execution_time 300
+</IfModule>

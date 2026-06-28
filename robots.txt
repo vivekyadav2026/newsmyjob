@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /ajax/
+Disallow: /api/
+Disallow: /includes/
+Disallow: /config/
+Disallow: /models/
+Disallow: /database/
+
+Sitemap: http://localhost/newsmyjob/sitemap.xml
