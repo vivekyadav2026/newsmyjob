@@ -43,7 +43,7 @@ require VIEWS_PATH . '/frontend/includes/header.php';
             <?php if ($article['category_name']): ?>
             <li class="breadcrumb-item"><a href="<?= categoryUrl($article['category_slug']) ?>" class="text-danger"><?= e($article['category_name']) ?></a></li>
             <?php endif; ?>
-            <li class="breadcrumb-item active text-muted"><?= e(truncate($article['title'], 40)) ?></li>
+            <li class="breadcrumb-item active text-muted text-truncate d-none d-sm-inline-block" style="max-width: 250px;"><?= e($article['title']) ?></li>
         </ol>
     </nav>
 
@@ -132,17 +132,21 @@ require VIEWS_PATH . '/frontend/includes/header.php';
             <?php endif; ?>
 
             <!-- Prev/Next -->
-            <div class="row mt-5 pt-4 border-top">
-                <div class="col-6 border-end">
+            <div class="row mt-5 pt-4 border-top g-4">
+                <div class="col-12 col-md-6">
                     <?php if ($prevNews): ?>
-                    <small class="text-muted d-block mb-1 text-uppercase fw-bold">Previous Story</small>
-                    <a href="<?= newsUrl($prevNews['slug']) ?>" class="text-decoration-none text-dark fw-bold font-merriweather lh-sm d-block hover-danger">&laquo; <?= e(truncate($prevNews['title'], 60)) ?></a>
+                    <div class="p-4 bg-light rounded border h-100 hover-lift text-center text-md-start">
+                        <small class="text-danger d-block mb-2 text-uppercase fw-bold"><i class="bi bi-arrow-left me-1"></i>Previous Story</small>
+                        <a href="<?= newsUrl($prevNews['slug']) ?>" class="text-decoration-none text-dark fw-bold font-merriweather lh-base fs-5 d-block hover-danger"><?= e(truncate($prevNews['title'], 60)) ?></a>
+                    </div>
                     <?php endif; ?>
                 </div>
-                <div class="col-6 text-end">
+                <div class="col-12 col-md-6">
                     <?php if ($nextNews): ?>
-                    <small class="text-muted d-block mb-1 text-uppercase fw-bold">Next Story</small>
-                    <a href="<?= newsUrl($nextNews['slug']) ?>" class="text-decoration-none text-dark fw-bold font-merriweather lh-sm d-block hover-danger"><?= e(truncate($nextNews['title'], 60)) ?> &raquo;</a>
+                    <div class="p-4 bg-light rounded border h-100 hover-lift text-center text-md-end">
+                        <small class="text-danger d-block mb-2 text-uppercase fw-bold">Next Story<i class="bi bi-arrow-right ms-1"></i></small>
+                        <a href="<?= newsUrl($nextNews['slug']) ?>" class="text-decoration-none text-dark fw-bold font-merriweather lh-base fs-5 d-block hover-danger"><?= e(truncate($nextNews['title'], 60)) ?></a>
+                    </div>
                     <?php endif; ?>
                 </div>
             </div>

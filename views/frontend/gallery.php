@@ -10,13 +10,9 @@ require VIEWS_PATH . '/frontend/includes/header.php';
 ?>
 
 <div class="container my-5">
-    <!-- Premium Gallery Banner -->
-    <div class="bg-dark text-white p-4 p-md-5 rounded shadow-sm mb-5 position-relative overflow-hidden" style="border-left: 5px solid var(--primary-color) !important;">
-        <div class="position-relative z-1" style="z-index: 2;">
-            <h1 class="display-4 fw-bold font-merriweather mb-3"><i class="bi bi-images text-danger me-3"></i>Photo Gallery</h1>
-            <p class="fs-5 text-light opacity-75 fst-italic mb-0">Explore the latest moments captured in pictures across all our stories.</p>
-        </div>
-        <i class="bi bi-images position-absolute text-white opacity-10" style="font-size: 15rem; right: -2rem; top: -3rem; transform: rotate(-15deg); z-index: 1;"></i>
+    <div class="page-header mb-5 pb-3 border-bottom border-2" style="border-color: var(--primary-color) !important;">
+        <h1 class="display-5 fw-bold font-merriweather text-dark mb-2"><i class="bi bi-images text-danger me-3"></i>Photo Gallery</h1>
+        <p class="fs-6 text-muted mb-0">Explore the latest moments captured in pictures across all our stories.</p>
     </div>
 
     <div class="masonry-gallery">
