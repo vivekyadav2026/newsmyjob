@@ -69,7 +69,7 @@ $user = currentUser();
             </li>
             <?php endif; ?>
 
-            <?php if (hasPermission('media')): ?>
+            <?php /* if (hasPermission('media')): ?>
             <li class="nav-item">
                 <a class="nav-link <?= $currentPage === 'media' ? 'active' : '' ?>" href="<?= adminUrl('media/index.php') ?>">
                     <i class="bi bi-images"></i> Media Library
@@ -83,7 +83,7 @@ $user = currentUser();
                     <i class="bi bi-chat-dots"></i> Comments
                 </a>
             </li>
-            <?php endif; ?>
+            <?php endif; */ ?>
 
             <?php if (hasPermission('users')): ?>
             <li class="nav-item">
@@ -117,7 +117,7 @@ $user = currentUser();
             </li>
             <?php endif; ?>
 
-            <?php if (hasPermission('reports')): ?>
+            <?php /* if (hasPermission('reports')): ?>
             <li class="nav-item">
                 <a class="nav-link <?= $currentPage === 'reports' ? 'active' : '' ?>" href="<?= adminUrl('reports/index.php') ?>">
                     <i class="bi bi-bar-chart"></i> Reports
@@ -131,7 +131,7 @@ $user = currentUser();
                     <i class="bi bi-database"></i> Backup
                 </a>
             </li>
-            <?php endif; ?>
+            <?php endif; */ ?>
         </ul>
     </nav>
 </aside>

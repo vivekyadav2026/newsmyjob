@@ -19,18 +19,12 @@ class ActivityLogModel
      */
     public static function log(?int $userId, string $action, string $moduleOrDescription = '', ?string $description = null, ?int $recordId = null): void
     {
-        if ($description !== null) {
-            $text = '[' . $moduleOrDescription . '] ' . $description;
-            if ($recordId !== null) {
-                $text .= ' (#' . $recordId . ')';
-            }
-        } else {
-            $text = $moduleOrDescription;
-        }
+        $module = $description !== null ? $moduleOrDescription : 'system';
+        $desc = $description ?? $moduleOrDescription;
 
         $db = Database::getInstance();
-        $stmt = $db->prepare('INSERT INTO activity_logs (user_id, action, description, ip_address) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$userId, $action, $text, getClientIp()]);
+        $stmt = $db->prepare('INSERT INTO activity_logs (user_id, action, module, record_id, description, ip_address) VALUES (?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$userId, $action, $module, $recordId, $desc, getClientIp()]);
     }
 
     public function getRecent(int $limit = 20): array

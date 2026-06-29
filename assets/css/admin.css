@@ -10,14 +10,45 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6f9; }
 
 .admin-sidebar {
     width: var(--sidebar-width);
-    min-height: 100vh;
+    height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
     z-index: 1000;
     display: flex;
     flex-direction: column;
+    background: var(--sidebar-bg);
+    color: #fff;
     transition: transform 0.3s;
+}
+
+.sidebar-brand {
+    padding: 20px 24px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-brand a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-nav {
+    padding: 20px 15px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.admin-navbar {
+    background: #fff;
+    border-bottom: 1px solid #eef2f7;
+    padding: 10px 24px;
+    position: relative;
+    z-index: 1040;
 }
 
 .admin-content {
@@ -31,9 +62,10 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6f9; }
     margin-bottom: 2px;
     padding: 10px 15px;
     transition: all 0.2s;
+    color: rgba(255, 255, 255, 0.7);
 }
 .sidebar-nav .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff !important; }
-.sidebar-nav .nav-link.active { background: var(--primary-color) !important; }
+.sidebar-nav .nav-link.active { background: var(--primary-color) !important; color: #fff !important; }
 
 .avatar-circle {
     width: 36px; height: 36px;

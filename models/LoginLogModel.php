@@ -16,10 +16,10 @@ class LoginLogModel
 
     public function create(array $data): int
     {
-        $stmt = $this->db->prepare('INSERT INTO login_logs (user_id, email, ip_address, user_agent, success) VALUES (?, ?, ?, ?, ?)');
+        $stmt = $this->db->prepare('INSERT INTO login_logs (user_id, email, ip_address, user_agent, status) VALUES (?, ?, ?, ?, ?)');
         $stmt->execute([
             $data['user_id'], $data['email'], $data['ip_address'],
-            $data['user_agent'], $data['success'],
+            $data['user_agent'], $data['success'] ? 'success' : 'failed',
         ]);
         return (int) $this->db->lastInsertId();
     }
