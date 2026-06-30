@@ -62,17 +62,8 @@ $footerAds = $adModel->getByPosition('footer');
                 </ul>
             </div>
 
-            <!-- Col 4: Contact & Newsletter -->
+            <!-- Col 4: Contact -->
             <div class="col-lg-3 col-md-6">
-                <h5>Newsletter</h5>
-                <p class="small text-light text-opacity-75 mb-3">Subscribe to our newsletter to get latest updates and news.</p>
-                <form id="newsletterForm" class="mb-4">
-                    <?= Security::csrfField() ?>
-                    <div class="input-group shadow-sm" style="border-radius: 6px; overflow: hidden;">
-                        <input type="email" name="email" class="form-control bg-dark border-0 text-white" placeholder="Email address" style="font-size: 14px; padding: 12px 15px;" required>
-                        <button class="btn btn-primary px-4 fw-bold" type="submit" style="background-color: var(--primary-color); border:none;"><i class="bi bi-send me-2"></i>Subscribe</button>
-                    </div>
-                </form>
                 <h5 class="mt-4">Contact Us</h5>
                 <p class="small text-light text-opacity-75 mb-1"><i class="bi bi-envelope me-2 text-danger"></i><?= e(setting('site_email', 'info@newsmyjob.com')) ?></p>
                 <p class="small text-light text-opacity-75"><i class="bi bi-telephone me-2 text-danger"></i><?= e(setting('site_phone', '+1 234 567 8900')) ?></p>

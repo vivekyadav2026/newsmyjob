@@ -11,15 +11,6 @@ $sidebarAds = $adModel->getByPosition('sidebar');
 $categories = (new CategoryModel())->getAll('active');
 ?>
 
-<!-- Newsletter Subscription -->
-<div class="p-4 border rounded text-center mb-5 shadow-sm" style="background: var(--card-bg); border-top: 4px solid var(--accent-color) !important;">
-    <h5 class="fw-bold font-merriweather mb-3"><i class="bi bi-envelope-paper-fill me-2" style="color: var(--accent-color);"></i>Newsletter</h5>
-    <p class="text-muted small mb-4" style="line-height: 1.6;">Get the latest news and breaking updates delivered straight to your inbox.</p>
-    <form class="d-flex flex-column gap-3">
-        <input type="email" class="form-control form-control-lg rounded-pill text-center shadow-sm border" placeholder="Your Email Address" style="font-size: 14px;">
-        <button class="btn btn-primary btn-lg rounded-pill fw-bold shadow-sm w-100" style="background-color: var(--accent-color); border:none; font-size: 15px; transition: var(--transition);">Subscribe</button>
-    </form>
-</div>
 
 <!-- Trending News Numbered -->
 <div class="mb-5">
