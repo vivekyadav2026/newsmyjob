@@ -228,12 +228,12 @@ $menuCategories = $categoryModel->getMenuCategories();
     .navbar-collapse { background: #fff; padding-bottom: 15px; border-radius: 0 0 15px 15px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); position: absolute; width: 100%; top: 100%; left: 0; z-index: 1000; }
     .dropdown-menu { border: none !important; box-shadow: none !important; padding-left: 15px; background: #f8f9fa; }
     .site-logo-title { font-size: 1.8rem; letter-spacing: -1px; }
-    .site-logo-img { height: 48px; }
+    .site-logo-img { height: 58px; }
 }
 @media (max-width: 575.98px) {
     .site-logo-title { font-size: 1.6rem; letter-spacing: -0.8px; }
     .site-logo-subtitle { font-size: 8.5px; letter-spacing: 1.5px; margin-top: 2px !important; }
-    .site-logo-img { height: 40px; }
+    .site-logo-img { height: 55px; }
     .navbar-brand.gap-2 { gap: 10px !important; }
 }
 </style>
