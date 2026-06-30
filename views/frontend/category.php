@@ -72,13 +72,15 @@ require VIEWS_PATH . '/frontend/includes/header.php';
 
     <div class="row mt-4">
         <div class="col-lg-8">
-            <div class="d-flex flex-column gap-4">
+            <div class="row g-4">
                 <?php if ($result['data']): ?>
                     <?php foreach ($result['data'] as $article): ?>
-                        <?php $article['category_name'] = $category['name']; include VIEWS_PATH . '/frontend/includes/news-card-hz.php'; ?>
+                        <div class="col-md-6">
+                            <?php $article['category_name'] = $category['name']; include VIEWS_PATH . '/frontend/includes/news-card-grid.php'; ?>
+                        </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <div class="text-center py-5">
+                    <div class="col-12 text-center py-5">
                         <i class="bi bi-journal-x text-muted mb-3" style="font-size: 3rem;"></i>
                         <h4 class="text-muted">No news found in this category.</h4>
                     </div>

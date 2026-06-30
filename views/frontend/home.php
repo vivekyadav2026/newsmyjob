@@ -86,7 +86,6 @@ require VIEWS_PATH . '/frontend/includes/header.php';
             <!-- Latest News (Horizontal) -->
             <div class="section-title">
                 <h4>Latest News</h4>
-                <a href="<?= BASE_URL ?>/latest" class="view-all">View All <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="mb-5">
                 <?php foreach (array_slice($latest['data'], 0, 5) as $article): ?>

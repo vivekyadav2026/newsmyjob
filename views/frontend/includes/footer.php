@@ -89,8 +89,6 @@ $footerAds = $adModel->getByPosition('footer');
 <!-- Mobile Bottom Navigation -->
 <div class="mobile-bottom-nav">
     <a href="<?= BASE_URL ?>" class="active"><i class="bi bi-house-door-fill"></i><span>Home</span></a>
-    <a href="<?= BASE_URL ?>/latest"><i class="bi bi-lightning-fill"></i><span>Latest</span></a>
-    <a href="<?= BASE_URL ?>/videos"><i class="bi bi-play-btn-fill"></i><span>Videos</span></a>
     <a href="#" data-bs-toggle="collapse" data-bs-target="#mainNav"><i class="bi bi-list"></i><span>Menu</span></a>
 </div>
 
