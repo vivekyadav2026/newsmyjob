@@ -21,10 +21,7 @@ $shareTitle = e($article['title']);
         <div class="meta text-muted mt-2 d-flex justify-content-between">
             <small><i class="bi bi-clock me-1"></i><?= timeAgo($article['published_at'] ?? $article['created_at']) ?></small>
             <div class="actions">
-                <a href="#" class="text-muted me-2 btn-share" data-share-url="<?= $shareUrl ?>" data-share-title="<?= $shareTitle ?>" title="Share"><i class="bi bi-share"></i></a>
-                <a href="#" class="<?= $isBookmarked ? 'text-primary' : 'text-muted' ?> btn-bookmark" data-news-id="<?= $article['id'] ?>" title="Save">
-                    <i class="bi <?= $isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark' ?>"></i>
-                </a>
+                <a href="#" class="text-muted btn-share" data-share-url="<?= $shareUrl ?>" data-share-title="<?= $shareTitle ?>" title="Share"><i class="bi bi-share"></i></a>
             </div>
         </div>
     </div>

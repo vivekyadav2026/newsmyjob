@@ -105,9 +105,6 @@ require VIEWS_PATH . '/frontend/includes/header.php';
                     <button id="webShareBtn" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" style="border-radius:20px; font-size:12px; background:#6c757d; border-color:#6c757d; color:#fff;" title="More Share Options">
                         <i class="bi bi-share-fill"></i> <span>Share</span>
                     </button>
-                    <button id="bookmarkBtn" data-news-id="<?= $article['id'] ?>" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1 <?= $isBookmarked ? 'active text-dark' : 'text-warning' ?>" style="border-radius:20px; font-size:12px; border-color:#ffc107;" title="Save / Bookmark">
-                        <i class="bi <?= $isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark' ?>"></i> <span><?= $isBookmarked ? 'Saved' : 'Save' ?></span>
-                    </button>
                 </div>
                 <div class="d-flex gap-2 align-items-center">
                     <span class="text-muted small fw-bold me-1 align-self-center">Text Size</span>

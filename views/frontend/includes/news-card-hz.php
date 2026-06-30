@@ -26,10 +26,7 @@ $shareTitle = e($article['title']);
                 <i class="bi bi-eye me-1"></i><?= number_format($article['views'] ?? 0) ?>
             </div>
             <div class="actions">
-                <a href="#" class="text-muted me-2 btn-share" data-share-url="<?= $shareUrl ?>" data-share-title="<?= $shareTitle ?>" title="Share"><i class="bi bi-share"></i></a>
-                <a href="#" class="<?= $isBookmarked ? 'text-primary' : 'text-muted' ?> btn-bookmark" data-news-id="<?= $article['id'] ?>" title="Save">
-                    <i class="bi <?= $isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark' ?>"></i>
-                </a>
+                <a href="#" class="text-muted btn-share" data-share-url="<?= $shareUrl ?>" data-share-title="<?= $shareTitle ?>" title="Share"><i class="bi bi-share"></i></a>
             </div>
         </div>
     </div>
