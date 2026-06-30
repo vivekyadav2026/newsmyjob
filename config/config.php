@@ -15,7 +15,7 @@ define('APP_ENV', 'production');
 define('APP_DEBUG', false);
 
 // Base URLs - adjust for your XAMPP setup
-define('BASE_URL', 'http://localhost/newsmyjob');
+define('BASE_URL', 'https://myjobhub.in');
 define('ADMIN_URL', BASE_URL . '/admin');
 define('ASSETS_URL', BASE_URL . '/assets');
 define('UPLOADS_URL', BASE_URL . '/uploads');
