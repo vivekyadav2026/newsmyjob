@@ -43,11 +43,10 @@ class AdvertisementModel
 
     public function create(array $data): int
     {
-        $stmt = $this->db->prepare('INSERT INTO advertisements (title, ad_type, position, image, link, ad_code, width, height, start_date, end_date, status, display_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt = $this->db->prepare('INSERT INTO advertisements (title, ad_type, position, image, link, content, start_date, end_date, status, display_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $stmt->execute([
-            $data['title'], $data['ad_type'], $data['position'] ?? 'header',
-            $data['image'] ?? null, $data['link'] ?? null, $data['ad_code'] ?? null,
-            $data['width'] ?? null, $data['height'] ?? null,
+            $data['title'], $data['ad_type'], $data['position'] ?? 'sidebar',
+            $data['image'] ?? null, $data['link'] ?? null, $data['content'] ?? null,
             $data['start_date'] ?? null, $data['end_date'] ?? null,
             $data['status'] ?? 'active', $data['display_order'] ?? 0,
         ]);
@@ -56,11 +55,10 @@ class AdvertisementModel
 
     public function update(int $id, array $data): bool
     {
-        $stmt = $this->db->prepare('UPDATE advertisements SET title=?, ad_type=?, position=?, image=?, link=?, ad_code=?, width=?, height=?, start_date=?, end_date=?, status=?, display_order=? WHERE id=?');
+        $stmt = $this->db->prepare('UPDATE advertisements SET title=?, ad_type=?, position=?, image=?, link=?, content=?, start_date=?, end_date=?, status=?, display_order=? WHERE id=?');
         return $stmt->execute([
-            $data['title'], $data['ad_type'], $data['position'] ?? 'header',
-            $data['image'] ?? null, $data['link'] ?? null, $data['ad_code'] ?? null,
-            $data['width'] ?? null, $data['height'] ?? null,
+            $data['title'], $data['ad_type'], $data['position'] ?? 'sidebar',
+            $data['image'] ?? null, $data['link'] ?? null, $data['content'] ?? null,
             $data['start_date'] ?? null, $data['end_date'] ?? null,
             $data['status'] ?? 'active', $data['display_order'] ?? 0, $id,
         ]);

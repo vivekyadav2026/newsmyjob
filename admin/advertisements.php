@@ -47,9 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'ad_type'       => in_array($_POST['ad_type'] ?? '', $adTypes, true) ? $_POST['ad_type'] : 'html',
         'position'      => in_array($_POST['position'] ?? '', $positions, true) ? $_POST['position'] : 'sidebar',
         'link'          => Security::sanitize($_POST['link'] ?? ''),
-        'ad_code'       => $_POST['ad_code'] ?? '',
-        'width'         => (int) ($_POST['width'] ?? 0) ?: null,
-        'height'        => (int) ($_POST['height'] ?? 0) ?: null,
+        'content'       => $_POST['content'] ?? '',
         'start_date'    => !empty($_POST['start_date']) ? $_POST['start_date'] : null,
         'end_date'      => !empty($_POST['end_date']) ? $_POST['end_date'] : null,
         'status'        => in_array($_POST['status'] ?? '', ['active', 'inactive'], true) ? $_POST['status'] : 'active',
@@ -142,17 +140,7 @@ require VIEWS_PATH . '/admin/includes/sidebar.php';
                         </div>
                         <div class="mb-3 ad-code-field">
                             <label class="form-label">Ad Code / HTML</label>
-                            <textarea name="ad_code" class="form-control" rows="4"><?= e($editItem['ad_code'] ?? '') ?></textarea>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label class="form-label">Width (px)</label>
-                                <input type="number" name="width" class="form-control" value="<?= e($editItem['width'] ?? '') ?>">
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label">Height (px)</label>
-                                <input type="number" name="height" class="form-control" value="<?= e($editItem['height'] ?? '') ?>">
-                            </div>
+                            <textarea name="content" class="form-control" rows="4"><?= e($editItem['content'] ?? '') ?></textarea>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">

@@ -12,12 +12,12 @@ $categories = (new CategoryModel())->getAll('active');
 ?>
 
 <!-- Newsletter Subscription -->
-<div class="p-4 bg-light border rounded text-center mb-5" style="border-top: 4px solid var(--accent-color) !important;">
-    <h5 class="fw-bold font-merriweather mb-2"><i class="bi bi-envelope-paper me-2 text-primary"></i>Newsletter</h5>
-    <p class="text-muted small mb-3">Get the latest news and breaking updates delivered straight to your inbox.</p>
-    <form class="d-flex flex-column gap-2">
-        <input type="email" class="form-control text-center" placeholder="Your Email Address">
-        <button class="btn btn-primary fw-bold w-100" style="background-color: var(--accent-color); border:none;">Subscribe</button>
+<div class="p-4 border rounded text-center mb-5 shadow-sm" style="background: var(--card-bg); border-top: 4px solid var(--accent-color) !important;">
+    <h5 class="fw-bold font-merriweather mb-3"><i class="bi bi-envelope-paper-fill me-2" style="color: var(--accent-color);"></i>Newsletter</h5>
+    <p class="text-muted small mb-4" style="line-height: 1.6;">Get the latest news and breaking updates delivered straight to your inbox.</p>
+    <form class="d-flex flex-column gap-3">
+        <input type="email" class="form-control form-control-lg rounded-pill text-center shadow-sm border" placeholder="Your Email Address" style="font-size: 14px;">
+        <button class="btn btn-primary btn-lg rounded-pill fw-bold shadow-sm w-100" style="background-color: var(--accent-color); border:none; font-size: 15px; transition: var(--transition);">Subscribe</button>
     </form>
 </div>
 
@@ -73,11 +73,15 @@ $categories = (new CategoryModel())->getAll('active');
     </div>
     <div class="d-flex flex-column gap-3">
         <?php foreach ($mostViewed as $i => $item): ?>
-        <div class="d-flex gap-3 align-items-center pb-3 <?= $i<count($mostViewed)-1 ? 'border-bottom' : '' ?>">
-            <img src="<?= $item['featured_image'] ? UPLOADS_URL . '/' . e($item['featured_image']) : asset('images/placeholder.svg') ?>" class="rounded" style="width: 80px; height: 60px; object-fit: cover; flex-shrink: 0;">
-            <div>
-                <h6 class="mb-1 font-merriweather" style="font-size: 14px; font-weight: 700; line-height: 1.3;"><a href="<?= newsUrl($item['slug']) ?>" class="text-dark"><?= e(truncate($item['title'], 50)) ?></a></h6>
-                <small class="text-muted" style="font-size: 12px;"><i class="bi bi-eye me-1"></i><?= number_format($item['views']) ?> Views</small>
+        <div class="news-list-card">
+            <div class="img-wrapper">
+                <a href="<?= newsUrl($item['slug']) ?>">
+                    <img src="<?= $item['featured_image'] ? UPLOADS_URL . '/' . e($item['featured_image']) : asset('images/placeholder.svg') ?>" alt="<?= e(truncate($item['title'], 50)) ?>">
+                </a>
+            </div>
+            <div class="content">
+                <h6><a href="<?= newsUrl($item['slug']) ?>"><?= e(truncate($item['title'], 50)) ?></a></h6>
+                <div class="meta"><i class="bi bi-eye me-1"></i><?= number_format($item['views']) ?> Views</div>
             </div>
         </div>
         <?php endforeach; ?>
@@ -91,7 +95,7 @@ $categories = (new CategoryModel())->getAll('active');
     </div>
     <div class="d-flex flex-wrap gap-2">
         <?php foreach ($categories as $cat): ?>
-        <a href="<?= categoryUrl($cat['slug']) ?>" class="badge bg-white text-dark text-decoration-none border shadow-sm py-2 px-3 fw-bold" style="font-size: 13px;"><?= e($cat['name']) ?></a>
+        <a href="<?= categoryUrl($cat['slug']) ?>" class="category-badge text-decoration-none"><?= e($cat['name']) ?></a>
         <?php endforeach; ?>
     </div>
 </div>

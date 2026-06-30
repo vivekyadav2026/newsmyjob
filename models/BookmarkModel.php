@@ -24,6 +24,13 @@ class BookmarkModel
         return true;
     }
 
+    public function isBookmarked(string $sessionId, int $newsId): bool
+    {
+        $stmt = $this->db->prepare('SELECT id FROM bookmarks WHERE session_id = ? AND news_id = ?');
+        $stmt->execute([$sessionId, $newsId]);
+        return (bool) $stmt->fetch();
+    }
+
     public function getBySession(string $sessionId): array
     {
         $stmt = $this->db->prepare(

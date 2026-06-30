@@ -15,6 +15,7 @@ $commentModel = new CommentModel();
 $days = max(7, min(90, (int) ($_GET['days'] ?? 30)));
 $stats = $reportModel->getDashboardStats();
 $chartData = $reportModel->getVisitorChart($days);
+$pageViewChart = $reportModel->getPageViewChart($days);
 $popularCategories = $reportModel->getPopularCategories(8);
 $mostViewed = $newsModel->getMostViewed(10);
 $topAuthors = (new UserModel())->getTopAuthors(5);
@@ -130,11 +131,24 @@ require VIEWS_PATH . '/admin/includes/sidebar.php';
     </div>
 </div>
 <?php
-$chartLabels = json_encode(array_column($chartData, 'date'));
-$chartVisitors = json_encode(array_column($chartData, 'visitors'));
-$chartPageviews = json_encode(array_column($chartData, 'pageviews'));
+$dates = [];
+$visitors = [];
+$pageviews = [];
+$visitorLookup = array_column($chartData, 'visitors', 'date');
+$pageviewLookup = array_column($pageViewChart, 'pageviews', 'date');
+
+for ($i = $days - 1; $i >= 0; $i--) {
+    $date = date('Y-m-d', strtotime("-$i days"));
+    $dates[] = date('M d', strtotime($date));
+    $visitors[] = (int)($visitorLookup[$date] ?? 0);
+    $pageviews[] = (int)($pageviewLookup[$date] ?? 0);
+}
+
+$chartLabels = json_encode($dates);
+$chartVisitors = json_encode($visitors);
+$chartPageviews = json_encode($pageviews);
 $catLabels = json_encode(array_column($popularCategories, 'name'));
-$catViews = json_encode(array_column($popularCategories, 'views'));
+$catViews = json_encode(array_column($popularCategories, 'article_count'));
 $extraScripts = <<<JS
 <script>
 const ctx1 = document.getElementById('visitorChart');

@@ -3,8 +3,29 @@
  */
 $(document).ready(function() {
     // Sidebar toggle for mobile
-    $('#sidebarToggle').on('click', function() {
+    $('#sidebarToggle').on('click', function(e) {
+        e.stopPropagation();
         $('.admin-sidebar').toggleClass('show');
+        toggleBackdrop();
+    });
+
+    function toggleBackdrop() {
+        if ($('.admin-sidebar').hasClass('show') && $(window).width() < 992) {
+            if (!$('.sidebar-backdrop').length) {
+                $('body').append('<div class="sidebar-backdrop"></div>');
+                $('.sidebar-backdrop').fadeIn(200);
+            }
+        } else {
+            $('.sidebar-backdrop').fadeOut(200, function() {
+                $(this).remove();
+            });
+        }
+    }
+
+    // Close sidebar when clicking backdrop
+    $(document).on('click', '.sidebar-backdrop', function() {
+        $('.admin-sidebar').removeClass('show');
+        toggleBackdrop();
     });
 
     // Dark mode toggle
@@ -59,10 +80,18 @@ $(document).ready(function() {
     });
 
     // CKEditor init
-    if ($('#content').length && typeof ClassicEditor !== 'undefined') {
-        ClassicEditor.create(document.querySelector('#content'), {
-            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
-        }).catch(function(error) { console.error(error); });
+    if (typeof ClassicEditor !== 'undefined') {
+        if ($('#content').length) {
+            ClassicEditor.create(document.querySelector('#content'), {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
+            }).catch(function(error) { console.error(error); });
+        }
+        
+        $('.editor').each(function() {
+            ClassicEditor.create(this, {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
+            }).catch(function(error) { console.error(error); });
+        });
     }
 
     // AJAX setup with CSRF

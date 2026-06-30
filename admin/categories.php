@@ -52,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'icon'             => Security::sanitize($_POST['icon'] ?? ''),
         'meta_title'       => Security::sanitize($_POST['meta_title'] ?? ''),
         'meta_description' => Security::sanitize($_POST['meta_description'] ?? ''),
-        'meta_keywords'    => Security::sanitize($_POST['meta_keywords'] ?? ''),
+        'parent_id'        => !empty($_POST['parent_id']) ? (int) $_POST['parent_id'] : null,
+        'show_in_menu'     => isset($_POST['show_in_menu']) ? 1 : 0,
         'display_order'    => (int) ($_POST['display_order'] ?? 0),
         'status'           => in_array($_POST['status'] ?? '', ['active', 'inactive'], true) ? $_POST['status'] : 'active',
         'image'            => null,
@@ -120,6 +121,20 @@ require VIEWS_PATH . '/admin/includes/sidebar.php';
                             <input type="text" name="name" id="title" class="form-control" value="<?= e($editItem['name'] ?? '') ?>" required>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Parent Category</label>
+                            <select name="parent_id" class="form-select">
+                                <option value="">-- None (Top Level) --</option>
+                                <?php foreach ($categories as $pCat): ?>
+                                    <?php if ($pCat['parent_id'] === null && (!isset($editItem) || $pCat['id'] !== $editItem['id'])): ?>
+                                        <option value="<?= $pCat['id'] ?>" <?= (($editItem['parent_id'] ?? '') == $pCat['id']) ? 'selected' : '' ?>>
+                                            <?= e($pCat['name']) ?>
+                                        </option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="form-text">Select a parent to make this a subcategory.</div>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Slug</label>
                             <input type="text" name="slug" id="slug" class="form-control" value="<?= e($editItem['slug'] ?? '') ?>" <?= $editItem ? 'data-manual="true"' : '' ?>>
                         </div>
@@ -149,6 +164,11 @@ require VIEWS_PATH . '/admin/includes/sidebar.php';
                                 <option value="inactive" <?= ($editItem['status'] ?? '') === 'inactive' ? 'selected' : '' ?>>Inactive</option>
                             </select>
                         </div>
+                        <div class="mb-4 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="show_in_menu" name="show_in_menu" value="1" <?= (!empty($editItem['show_in_menu'])) ? 'checked' : '' ?>>
+                            <label class="form-check-label fw-bold" for="show_in_menu">Show in Header Menu</label>
+                            <div class="form-text">If checked, this category will appear in the main navigation bar.</div>
+                        </div>
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-danger"><?= $editItem ? 'Update' : 'Create' ?></button>
                             <?php if ($editItem): ?>
@@ -176,11 +196,23 @@ require VIEWS_PATH . '/admin/includes/sidebar.php';
                                         <i class="bi <?= e($cat['icon'] ?? 'bi-folder') ?> fs-4"></i>
                                         <?php endif; ?>
                                     </td>
-                                    <td><?= e($cat['name']) ?></td>
+                                    <td>
+                                        <?php if ($cat['parent_id']): ?>
+                                            <span class="ms-3 text-muted">↳</span> <?= e($cat['name']) ?>
+                                            <br><small class="text-muted ms-4">Parent: <?= e($cat['parent_name']) ?></small>
+                                        <?php else: ?>
+                                            <strong><?= e($cat['name']) ?></strong>
+                                        <?php endif; ?>
+                                    </td>
                                     <td><code><?= e($cat['slug']) ?></code></td>
                                     <td><?= $cat['news_count'] ?? 0 ?></td>
                                     <td><?= $cat['display_order'] ?></td>
-                                    <td><span class="badge bg-<?= $cat['status'] === 'active' ? 'success' : 'secondary' ?>"><?= ucfirst($cat['status']) ?></span></td>
+                                    <td>
+                                        <span class="badge bg-<?= $cat['status'] === 'active' ? 'success' : 'secondary' ?>"><?= ucfirst($cat['status']) ?></span>
+                                        <?php if ($cat['show_in_menu']): ?>
+                                            <span class="badge bg-info mt-1 d-block"><i class="bi bi-menu-button"></i> Menu</span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <a href="<?= ADMIN_URL ?>/categories.php?edit=<?= $cat['id'] ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></a>
                                         <form method="POST" class="d-inline">

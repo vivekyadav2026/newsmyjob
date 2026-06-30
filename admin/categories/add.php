@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'meta_description' => trim($_POST['meta_description'] ?? ''),
         'meta_keywords' => trim($_POST['meta_keywords'] ?? ''),
         'display_order' => (int) ($_POST['display_order'] ?? 0),
+        'show_in_menu' => isset($_POST['show_in_menu']) ? 1 : 0,
+        'show_on_home' => isset($_POST['show_on_home']) ? 1 : 0,
         'status' => $_POST['status'] ?? 'active',
     ];
     if (empty($name)) $errors[] = 'Name is required.';
@@ -62,6 +64,20 @@ require APP_ROOT . '/includes/header.php';
                 <div class="col-md-6"><label class="form-label">Meta Title</label><input type="text" name="meta_title" class="form-control"></div>
                 <div class="col-12"><label class="form-label">Meta Description</label><textarea name="meta_description" class="form-control" rows="2"></textarea></div>
                 <div class="col-12"><label class="form-label">Meta Keywords</label><input type="text" name="meta_keywords" class="form-control"></div>
+                <div class="col-md-6 mt-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="show_in_menu" name="show_in_menu" value="1">
+                        <label class="form-check-label fw-bold" for="show_in_menu">Show in Header Menu</label>
+                        <div class="form-text">If checked, this category and its active subcategories will appear in the main navigation bar.</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="show_on_home" name="show_on_home" value="1">
+                        <label class="form-check-label fw-bold" for="show_on_home">Show on Home Page</label>
+                        <div class="form-text">If checked, the latest news from this category will be featured on the homepage.</div>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="btn btn-danger mt-3">Save Category</button>
         </form>

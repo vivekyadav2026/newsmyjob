@@ -19,8 +19,7 @@
             <?php endif; ?>
             <h5><a href="<?= newsUrl($article['slug']) ?>"><?= e($article['title']) ?></a></h5>
             <p class="text-muted small mb-2"><?= e(truncate($article['excerpt'] ?? strip_tags($article['content'] ?? ''), 100)) ?></p>
-            <div class="d-flex justify-content-between text-muted small">
-                <span><i class="bi bi-person"></i> <?= e($article['author_name'] ?? 'Admin') ?></span>
+            <div class="d-flex justify-content-end text-muted small">
                 <span><i class="bi bi-clock"></i> <?= timeAgo($article['published_at'] ?? $article['created_at']) ?></span>
             </div>
         </div>

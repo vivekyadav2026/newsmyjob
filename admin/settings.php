@@ -9,7 +9,7 @@ Auth::requirePermission('settings');
 $pageTitle = 'Settings';
 $settingsModel = new SettingsModel();
 $tab = $_GET['tab'] ?? 'general';
-$validTabs = ['general', 'contact', 'social', 'seo', 'appearance', 'homepage'];
+$validTabs = ['general', 'contact', 'social', 'seo', 'appearance', 'homepage', 'pages'];
 if (!in_array($tab, $validTabs, true)) {
     $tab = 'general';
 }
@@ -21,6 +21,7 @@ $tabGroups = [
     'seo'        => 'seo',
     'appearance' => 'appearance',
     'homepage'   => 'homepage',
+    'pages'      => 'pages',
 ];
 
 $tabFields = [
@@ -29,9 +30,6 @@ $tabFields = [
         'site_tagline' => ['label' => 'Tagline', 'type' => 'text'],
         'site_logo' => ['label' => 'Logo', 'type' => 'file'],
         'site_favicon' => ['label' => 'Favicon', 'type' => 'file'],
-        'maintenance_mode' => ['label' => 'Maintenance Mode', 'type' => 'checkbox'],
-        'maintenance_message' => ['label' => 'Maintenance Message', 'type' => 'textarea'],
-        'comments_enabled' => ['label' => 'Enable Comments', 'type' => 'checkbox'],
         'posts_per_page' => ['label' => 'Posts Per Page', 'type' => 'number'],
     ],
     'contact' => [
@@ -62,6 +60,11 @@ $tabFields = [
         'homepage_trending_enabled' => ['label' => 'Trending Section', 'type' => 'checkbox'],
         'homepage_featured_enabled' => ['label' => 'Featured Section', 'type' => 'checkbox'],
         'homepage_newsletter_enabled' => ['label' => 'Newsletter Section', 'type' => 'checkbox'],
+    ],
+    'pages' => [
+        'about_us' => ['label' => 'About Us Content', 'type' => 'editor'],
+        'privacy_policy' => ['label' => 'Privacy Policy Content', 'type' => 'editor'],
+        'terms_conditions' => ['label' => 'Terms & Conditions Content', 'type' => 'editor'],
     ],
 ];
 
@@ -140,6 +143,8 @@ require VIEWS_PATH . '/admin/includes/sidebar.php';
                     <label class="form-label"><?= e($field['label']) ?></label>
                     <?php if ($field['type'] === 'textarea'): ?>
                     <textarea name="<?= $key ?>" class="form-control" rows="3"><?= e($currentSettings[$key] ?? '') ?></textarea>
+                    <?php elseif ($field['type'] === 'editor'): ?>
+                    <textarea name="<?= $key ?>" class="form-control editor" rows="10"><?= htmlspecialchars($currentSettings[$key] ?? '') ?></textarea>
                     <?php elseif ($field['type'] === 'checkbox'): ?>
                     <div class="form-check">
                         <input type="checkbox" name="<?= $key ?>" class="form-check-input" id="<?= $key ?>" value="1" <?= ($currentSettings[$key] ?? '0') === '1' ? 'checked' : '' ?>>

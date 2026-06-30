@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>http://localhost/newsmyjob/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>http://localhost/newsmyjob/category/tech-sub</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>http://localhost/newsmyjob/category/sports</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>http://localhost/newsmyjob/category/technology</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>http://localhost/newsmyjob/category/entertainment</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>http://localhost/newsmyjob/category/suryaparent-suryamaurya</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>http://localhost/newsmyjob/category/business</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>http://localhost/newsmyjob/category/health</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>http://localhost/newsmyjob/news/government-announces-new-economic-policy-reforms</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost/newsmyjob/news/national-team-wins-championship</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost/newsmyjob/news/revolutionary-ai-technology-transforms-healthcare</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost/newsmyjob/news/blockbuster-movie-breaks-box-office-records</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost/newsmyjob/news/stock-market-reaches-all-time-high</loc><lastmod>2026-06-29</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost/newsmyjob/news/breakthrough-in-cancer-research</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+</urlset>

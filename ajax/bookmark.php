@@ -14,6 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 requireCsrf();
 
+if (!Auth::check()) {
+    jsonResponse(['success' => false, 'message' => 'Please login to save articles.', 'login_required' => true], 401);
+}
+
 $newsId = (int) ($_POST['news_id'] ?? 0);
 if (!$newsId) {
     jsonResponse(['success' => false, 'message' => 'Invalid news ID.'], 422);

@@ -31,10 +31,10 @@ $recentActivities = $activityModel->getRecent(15);
 require APP_ROOT . '/includes/header.php';
 ?>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<!-- <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">Dashboard</h1>
     <span class="text-muted">Welcome back, <?= e(Auth::user()['name'] ?? '') ?>!</span>
-</div>
+</div> -->
 
 <?= renderFlash() ?>
 
@@ -179,9 +179,22 @@ require APP_ROOT . '/includes/header.php';
 </div>
 
 <?php
-$chartLabels = json_encode(array_column($chartData, 'date'));
-$chartVisitors = json_encode(array_column($chartData, 'visitors'));
-$chartPageviews = json_encode(array_column($pageViewChart, 'pageviews'));
+$dates = [];
+$visitors = [];
+$pageviews = [];
+$visitorLookup = array_column($chartData, 'visitors', 'date');
+$pageviewLookup = array_column($pageViewChart, 'pageviews', 'date');
+
+for ($i = 29; $i >= 0; $i--) {
+    $date = date('Y-m-d', strtotime("-$i days"));
+    $dates[] = date('M d', strtotime($date));
+    $visitors[] = (int)($visitorLookup[$date] ?? 0);
+    $pageviews[] = (int)($pageviewLookup[$date] ?? 0);
+}
+
+$chartLabels = json_encode($dates);
+$chartVisitors = json_encode($visitors);
+$chartPageviews = json_encode($pageviews);
 $extraScripts = <<<HTML
 <script>
 new Chart(document.getElementById('visitorChart'), {

@@ -31,22 +31,42 @@ class CategoryModel
     public function getAll(?string $status = null): array
     {
         if ($status) {
-            $stmt = $this->db->prepare('SELECT c.*, (SELECT COUNT(*) FROM news n WHERE n.category_id = c.id AND n.status = "published") as news_count FROM categories c WHERE c.status = ? ORDER BY c.display_order ASC, c.name ASC');
+            $stmt = $this->db->prepare('SELECT c.*, p.name as parent_name, (SELECT COUNT(*) FROM news n WHERE n.category_id = c.id AND n.status = "published") as news_count FROM categories c LEFT JOIN categories p ON c.parent_id = p.id WHERE c.status = ? ORDER BY c.display_order ASC, c.name ASC');
             $stmt->execute([$status]);
         } else {
-            $stmt = $this->db->query('SELECT c.*, (SELECT COUNT(*) FROM news n WHERE n.category_id = c.id) as news_count FROM categories c ORDER BY c.display_order ASC, c.name ASC');
+            $stmt = $this->db->query('SELECT c.*, p.name as parent_name, (SELECT COUNT(*) FROM news n WHERE n.category_id = c.id) as news_count FROM categories c LEFT JOIN categories p ON c.parent_id = p.id ORDER BY c.display_order ASC, c.name ASC');
         }
+        return $stmt->fetchAll();
+    }
+
+    public function getMenuCategories(): array
+    {
+        $stmt = $this->db->query('SELECT * FROM categories WHERE status = "active" AND show_in_menu = 1 ORDER BY display_order ASC, name ASC');
+        $cats = $stmt->fetchAll();
+        
+        foreach ($cats as &$cat) {
+            $stmtSub = $this->db->prepare('SELECT * FROM sub_categories WHERE category_id = ? AND status = "active" ORDER BY display_order ASC, name ASC');
+            $stmtSub->execute([$cat['id']]);
+            $cat['children'] = $stmtSub->fetchAll();
+        }
+        
+        return $cats;
+    }
+
+    public function getHomeCategories(): array
+    {
+        $stmt = $this->db->query('SELECT * FROM categories WHERE status = "active" AND show_on_home = 1 ORDER BY display_order ASC, name ASC');
         return $stmt->fetchAll();
     }
 
     public function create(array $data): int
     {
-        $stmt = $this->db->prepare('INSERT INTO categories (name, slug, description, image, icon, meta_title, meta_description, meta_keywords, display_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt = $this->db->prepare('INSERT INTO categories (parent_id, name, slug, description, image, icon, meta_title, meta_description, show_in_menu, show_on_home, display_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $stmt->execute([
-            $data['name'], $data['slug'], $data['description'] ?? null,
+            $data['parent_id'] ?? null, $data['name'], $data['slug'], $data['description'] ?? null,
             $data['image'] ?? null, $data['icon'] ?? null,
             $data['meta_title'] ?? null, $data['meta_description'] ?? null,
-            $data['meta_keywords'] ?? null, $data['display_order'] ?? 0,
+            $data['show_in_menu'] ?? 0, $data['show_on_home'] ?? 0, $data['display_order'] ?? 0,
             $data['status'] ?? 'active',
         ]);
         return (int) $this->db->lastInsertId();
@@ -54,12 +74,12 @@ class CategoryModel
 
     public function update(int $id, array $data): bool
     {
-        $stmt = $this->db->prepare('UPDATE categories SET name=?, slug=?, description=?, image=?, icon=?, meta_title=?, meta_description=?, meta_keywords=?, display_order=?, status=? WHERE id=?');
+        $stmt = $this->db->prepare('UPDATE categories SET parent_id=?, name=?, slug=?, description=?, image=?, icon=?, meta_title=?, meta_description=?, show_in_menu=?, show_on_home=?, display_order=?, status=? WHERE id=?');
         return $stmt->execute([
-            $data['name'], $data['slug'], $data['description'] ?? null,
+            $data['parent_id'] ?? null, $data['name'], $data['slug'], $data['description'] ?? null,
             $data['image'] ?? null, $data['icon'] ?? null,
             $data['meta_title'] ?? null, $data['meta_description'] ?? null,
-            $data['meta_keywords'] ?? null, $data['display_order'] ?? 0,
+            $data['show_in_menu'] ?? 0, $data['show_on_home'] ?? 0, $data['display_order'] ?? 0,
             $data['status'] ?? 'active', $id,
         ]);
     }

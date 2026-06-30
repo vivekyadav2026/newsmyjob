@@ -6,15 +6,15 @@ $user = currentUser();
         <button class="btn btn-link sidebar-toggle d-lg-none" type="button" id="sidebarToggle">
             <i class="bi bi-list fs-4"></i>
         </button>
-        <div class="ms-auto d-flex align-items-center gap-3">
-            <a href="<?= url() ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+        <div class="ms-auto d-flex align-items-center gap-2">
+            <a href="<?= url() ?>" target="_blank" class="btn btn-sm btn-outline-primary d-none d-md-inline-block">
                 <i class="bi bi-box-arrow-up-right"></i> View Site
             </a>
             <div class="dropdown">
-                <button class="btn btn-link dropdown-toggle text-dark text-decoration-none" data-bs-toggle="dropdown">
+                <button class="btn btn-link dropdown-toggle text-dark text-decoration-none d-flex align-items-center gap-2 px-2 py-1" data-bs-toggle="dropdown">
                     <i class="bi bi-person-circle fs-5"></i>
-                    <?= e($user['name'] ?? '') ?>
-                    <span class="badge bg-secondary"><?= e(ucfirst(str_replace('_', ' ', $user['role']))) ?></span>
+                    <span class="d-none d-md-inline"><?= e($user['name'] ?? '') ?></span>
+                    <span class="badge bg-secondary d-none d-md-inline"><?= e(ucfirst(str_replace('_', ' ', $user['role']))) ?></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="<?= adminUrl('profile.php') ?>"><i class="bi bi-person"></i> Profile</a></li>

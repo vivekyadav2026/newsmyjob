@@ -14,12 +14,23 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6f9; }
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 1000;
+    z-index: 1050;
     display: flex;
     flex-direction: column;
     background: var(--sidebar-bg);
     color: #fff;
     transition: transform 0.3s;
+}
+
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1045;
+    display: none;
 }
 
 .sidebar-brand {
@@ -129,6 +140,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6f9; }
     .admin-sidebar { transform: translateX(-100%); }
     .admin-sidebar.show { transform: translateX(0); }
     .admin-content { margin-left: 0; width: 100%; }
+    .admin-navbar { padding: 8px 16px; }
 }
 
 .table th { font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #6c757d; }
