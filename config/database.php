@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 return [
     'host'     => 'localhost',
-    'dbname'   => 'newsmyjob',
-    'username' => 'root',
-    'password' => '',
-    // 'dbname'   => 'u798623491_myjobhubdb',
-    // 'username' => 'u798623491_myjobhub',
-    // 'password' => 'Myjobhub@2026%',
+    // 'dbname'   => 'newsmyjob',
+    // 'username' => 'root',
+    // 'password' => '',
+    'dbname'   => 'u798623491_myjobhubdb',
+    'username' => 'u798623491_myjobhub',
+    'password' => 'Myjobhub@2026%',
     'charset'  => 'utf8mb4',
     'options'  => [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
