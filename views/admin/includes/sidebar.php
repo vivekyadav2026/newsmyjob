@@ -29,7 +29,7 @@ $menuItems = [
     <div class="sidebar-brand p-3 border-bottom border-secondary">
         <a href="<?= ADMIN_URL ?>/dashboard.php" class="text-white text-decoration-none d-flex align-items-center gap-2">
             <i class="bi bi-newspaper fs-4"></i>
-            <span class="fw-bold"><?= e(setting('site_name', 'NewsMyJob')) ?></span>
+            <span class="fw-bold"><?= e(setting('site_name', 'MyJobHub')) ?></span>
         </a>
     </div>
     <nav class="sidebar-nav p-2">
