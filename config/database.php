@@ -7,8 +7,12 @@ declare(strict_types=1);
 
 return [
     'host'     => 'localhost',
-    'dbname'   => 'newsmyjob',
-    'username' => 'root',
+    // 'dbname'   => 'newsmyjob',
+    // 'username' => 'root',
+    'dbname'   => 'u798623491_myjobhubdb',
+    'username' => 'u798623491_myjobhub',
+    'password' => 'Myjobhub@2026%',
+    
     'password' => '',
     'charset'  => 'utf8mb4',
     'options'  => [
