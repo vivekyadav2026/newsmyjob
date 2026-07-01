@@ -4,9 +4,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="<?= asset('js/admin.js') ?>"></script>
+<script src="<?= asset('js/admin.js') ?>?v=<?= time() ?>"></script>
 <?php if (!empty($extraScripts)): ?>
     <?= $extraScripts ?>
 <?php endif; ?>

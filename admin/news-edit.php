@@ -178,7 +178,7 @@ $subCatJson = json_encode(array_map(fn($sc) => ['id' => $sc['id'], 'category_id'
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Content <span class="text-danger">*</span></label>
-                            <textarea name="content" id="content" class="form-control"><?= e($_POST['content'] ?? '') ?></textarea>
+                            <textarea name="content" id="content" class="form-control" rows="20"><?= e($_POST['content'] ?? '') ?></textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">YouTube URL</label>
@@ -292,7 +292,18 @@ $subCatJson = json_encode(array_map(fn($sc) => ['id' => $sc['id'], 'category_id'
 <?php
 $selectedSub = (int)($_POST['sub_category_id'] ?? 0);
 $extraScripts = <<<JS
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js"></script>
 <script>
+    if (typeof tinymce !== 'undefined') {
+        tinymce.init({
+            selector: '#content',
+            height: 400,
+            plugins: 'code link image lists table',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | align lineheight | numlist bullist | link image table | code'
+        });
+    } else {
+        alert("Editor failed to load. Please check your internet connection or adblocker.");
+    }
 const allSubCategories = {$subCatJson};
 const selectedSub = {$selectedSub};
 function filterSubCategories() {

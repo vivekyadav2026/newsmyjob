@@ -81,12 +81,6 @@ $(document).ready(function() {
 
     // CKEditor init
     if (typeof ClassicEditor !== 'undefined') {
-        if ($('#content').length) {
-            ClassicEditor.create(document.querySelector('#content'), {
-                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
-            }).catch(function(error) { console.error(error); });
-        }
-        
         $('.editor').each(function() {
             ClassicEditor.create(this, {
                 toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']

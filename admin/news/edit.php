@@ -121,7 +121,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $tagString = implode(', ', array_column($tags, 'name'));
-$extraScripts = '<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>';
+$extraScripts = '
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    tinymce.init({
+        selector: "#content",
+        height: 400,
+        plugins: "code link image lists table",
+        toolbar: "undo redo | blocks fontfamily fontsize | bold italic underline | align lineheight | numlist bullist | link image table | code"
+    });
+});
+</script>
+';
 require APP_ROOT . '/includes/header.php';
 ?>
 

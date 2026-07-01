@@ -1,1 +1,3 @@
 <?php ini_set('display_errors', 1); error_reporting(E_ALL); require 'includes/bootstrap.php'; $_SERVER['REQUEST_METHOD']='POST'; $_POST['email']='admin@newsmyjob.com'; $_POST['password']='Admin@123'; $_POST['_csrf_token'] = Security::csrfToken(); $_SERVER['REMOTE_ADDR']='127.0.0.1'; $_SERVER['HTTP_USER_AGENT']=''; require 'admin/login.php';
+//  Email    | admin@newsmyjob.com    |
+// | Password |       

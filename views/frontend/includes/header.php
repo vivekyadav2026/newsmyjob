@@ -233,7 +233,7 @@ $menuCategories = $categoryModel->getMenuCategories();
 @media (max-width: 575.98px) {
     .site-logo-title { font-size: 1.6rem; letter-spacing: -0.8px; }
     .site-logo-subtitle { font-size: 8.5px; letter-spacing: 1.5px; margin-top: 2px !important; }
-    .site-logo-img { height: 55px; }
+    .site-logo-img { height: 55 px; }
     .navbar-brand.gap-2 { gap: 10px !important; }
 }
 </style>

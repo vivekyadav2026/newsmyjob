@@ -17,7 +17,7 @@ $pageTitle = $pageTitle ?? 'Admin Panel';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="<?= asset('css/admin.css') ?>" rel="stylesheet">
+    <link href="<?= asset('css/admin.css') ?>?v=<?= time() ?>" rel="stylesheet">
     <script>const BASE_URL = '<?= BASE_URL ?>'; const ADMIN_URL = '<?= ADMIN_URL ?>'; const CSRF_TOKEN = '<?= Security::generateCsrfToken() ?>';</script>
 </head>
 <body>
